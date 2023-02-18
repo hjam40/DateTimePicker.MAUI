@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sc="clr-namespace:Spinner.MAUI;assembly=Spinner.MAUI"
+             xmlns:cc="clr-namespace:CalendarView.MAUI;assembly=CalendarView.MAUI"
+             x:Class="DateTimePicker.MAUI.DateTimePicker"
+             x:Name="picker" Background="Transparent">
+    <Border x:Name="border" BindingContext="{x:Reference picker}" Style="{Binding BorderStyle}">
+        <Grid x:Name="mainGrid" VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="0"/>
+            </Grid.RowDefinitions>
+            <HorizontalStackLayout x:Name="LabelStk" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="End">
+                <Label x:Name="label" BindingContext="{x:Reference picker}" Style="{Binding LabelStyle}"/>
+                <Image x:Name="editImg" BindingContext="{x:Reference picker}" Source="{Binding EditImage}" Style="{Binding EditImageStyle}" IsVisible="{Binding ShowEditImage}"/>
+            </HorizontalStackLayout>
+            <VerticalStackLayout x:Name="InputsStk" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Fill">
+                <cc:CalendarView x:Name="Calendar" BindingContext="{x:Reference picker}" Style="{Binding CalendarStyle}" CalendarCulture="{Binding Culture}" MinSelectedDate="{Binding MinSelectedDate}" MaxSelectedDate="{Binding MaxSelectedDate}"/>
+                <Grid x:Name="SpinnersSelectionGrid" VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="0"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="SpinnersGrid" Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+                        <Border x:Name="SelectionBorder" BindingContext="{x:Reference picker}" Style="{Binding SpinnerSelectionBorderStyle}">
+                            <Label/>
+                        </Border>
+                        <HorizontalStackLayout x:Name="SpinnersStk" BindingContext="{x:Reference HourSpn}" HorizontalOptions="Center" VerticalOptions="Center" MinimumHeightRequest="{Binding MinimumHeightRequest}" Margin="5">
+                            <sc:Spinner x:Name="DaysSpn" BindingContext="{x:Reference picker}" Style="{Binding DaySpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowDaySpinner}"/>
+                            <Label x:Name="sepLabel1" BindingContext="{x:Reference picker}" Text="{Binding DateSeparatorText}" Style="{Binding SeparatorLabelStyle}"/>
+                            <sc:Spinner x:Name="MonthsSpn" BindingContext="{x:Reference picker}" Style="{Binding MonthSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowMonthSpinner}"/>
+                            <Label x:Name="sepLabel2" BindingContext="{x:Reference picker}"  Text="{Binding DateSeparatorText}" Style="{Binding SeparatorLabelStyle}"/>
+                            <sc:Spinner x:Name="YearsSpn" BindingContext="{x:Reference picker}" Style="{Binding YearSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowYearSpinner}"/>
+                            <Label x:Name="sepLabel3" BindingContext="{x:Reference picker}" Style="{Binding SeparatorLabelStyle}" Text=" " Margin="3,0,3,0"/>
+                            <sc:Spinner x:Name="HourSpn" BindingContext="{x:Reference picker}" Style="{Binding HourSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowHourSpinner}"/>
+                            <Label x:Name="sepLabel4" BindingContext="{x:Reference picker}" Text="{Binding TimeSeparatorText}" Style="{Binding SeparatorLabelStyle}"/>
+                            <sc:Spinner x:Name="MinuteSpn" BindingContext="{x:Reference picker}" Style="{Binding MinuteSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowMinuteSpinner}"/>
+                            <Label x:Name="sepLabel5" BindingContext="{x:Reference picker}" Text="{Binding TimeSeparatorText}" Style="{Binding SeparatorLabelStyle}"/>
+                            <sc:Spinner x:Name="SecondSpn" BindingContext="{x:Reference picker}" Style="{Binding SecondSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="{Binding ShowSecondSpinner}"/>
+                            <sc:Spinner x:Name="TimeSpn" BindingContext="{x:Reference picker}" Style="{Binding TimeSpinnerStyle}" ItemStyle="{Binding SpinnerItemStyle}" IsVisible="False"/>
+                        </HorizontalStackLayout>
+                    </Grid>
+                    <Image x:Name="okImg" Grid.Column="1" BindingContext="{x:Reference picker}" Source="{Binding OkImage}" Style="{Binding OkImageStyle}" IsVisible="{Binding ShowOkImage}"/>
+                    <Image x:Name="cancelImg" Grid.Column="2" BindingContext="{x:Reference picker}" Source="{Binding CancelImage}" Style="{Binding CancelImageStyle}" IsVisible="{Binding ShowCancelImage}"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentView>
